@@ -85,16 +85,29 @@ function mousedown(md_e) {
     function mouseup() {
         document.body.appendChild(guide);
         scene.removeEventListener('mousemove', mousemove);
+        scene.removeEventListener('touchmove', mousemove);
+
         document.removeEventListener('mouseup', mouseup);
+        document.removeEventListener('touchend', mouseup);
+
         scene.addEventListener('mousedown', mousedown);
+        scene.addEventListener('touchstart', mousedown);
+
     }
 
     (element || document.body).appendChild(guide);
     scene.addEventListener('mousemove', mousemove);
+    scene.addEventListener('touchmove', mousemove);
+
     document.addEventListener('mouseup', mouseup);
+    document.addEventListener('touchend', mouseup);
+
     scene.removeEventListener('mousedown', mousedown);
+    scene.removeEventListener('touchstart', mousedown);
+
 }
 
 document.ondragstart = function () { return false; }
 window.addEventListener('load', assembleCube);
 scene.addEventListener('mousedown', mousedown);
+scene.addEventListener('touchstart', mousedown);
